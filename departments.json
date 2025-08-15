@@ -1,0 +1,52 @@
+{
+    "departments": [
+        {
+            "id": 1,
+            "name": "Computer Science",
+            "description": "Explore projects in software development, artificial intelligence, and computer systems",
+            "icon": "fas fa-laptop-code",
+            "studentCount": 250,
+            "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        },
+        {
+            "id": 2,
+            "name": "Mechanical",
+            "description": "Discover innovative mechanical engineering projects and research work",
+            "icon": "fas fa-cogs",
+            "studentCount": 300,
+            "image": "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        },
+        {
+            "id": 3,
+            "name": "Food Technology",
+            "description": "Explore food processing, preservation, and innovation projects",
+            "icon": "fas fa-utensils",
+            "studentCount": 180,
+            "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        },
+        {
+            "id": 4,
+            "name": "Automobile",
+            "description": "View automotive engineering and vehicle technology projects",
+            "icon": "fas fa-car",
+            "studentCount": 200,
+            "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        },
+        {
+            "id": 5,
+            "name": "Computer Applications",
+            "description": "Browse software applications, web development, and IT solutions",
+            "icon": "fas fa-desktop",
+            "studentCount": 220,
+            "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        },
+        {
+            "id": 6,
+            "name": "Cyber Security",
+            "description": "Learn about network security, ethical hacking, and digital forensics projects",
+            "icon": "fas fa-shield-alt",
+            "studentCount": 150,
+            "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        }
+    ]
+} 

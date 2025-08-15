@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portfolios - EduConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #ecf0f1;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #bdc3c7;
+            --gray-dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .portfolio-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&auto=format');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            text-align: center;
+        }
+        
+        .portfolio-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .portfolio-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .portfolio-header::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--secondary-color));
+        }
+
+        .filter-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-header {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background-color: rgba(0,0,0,0.3);
+            background-blend-mode: overlay;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .profile-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 5px solid white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 0;
+        }
+
+        .student-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .student-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .student-department {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .skills-list, .interests-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-tag, .interest-tag {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .interest-tag {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: var(--gray-dark);
+            margin-bottom: 1rem;
+        }
+
+        .project-technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .technology-tag {
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid var(--gray-medium);
+        }
+
+        .achievement-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            color: var(--gray-dark);
+            background: var(--gray-light);
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .achievement-item i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+        }
+
+        .contact-section {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+            color: white;
+        }
+
+        .github-btn {
+            background: var(--gray-dark);
+        }
+
+        .email-btn {
+            background: var(--accent-color);
+        }
+
+        .footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">EduConnect</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="portfolio.html">Portfolios</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="portfolio-header">
+        <div class="container">
+            <h1>Student Portfolios</h1>
+            <p>Explore the innovative projects and achievements of our talented students</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Filters -->
+        <section class="filter-section">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="searchInput" class="form-label">Search</label>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search by name, skills, or projects...">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="departmentFilter" class="form-label">Department</label>
+                        <select class="form-select" id="departmentFilter">
+                            <option value="">All Departments</option>
+                            <!-- Departments will be dynamically added here -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Grid -->
+        <div class="row" id="portfolioGrid">
+            <!-- Portfolio cards will be dynamically added here -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2023 EduConnect University. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const portfolioGrid = $('#portfolioGrid');
+            const searchInput = $('#searchInput');
+            const departmentFilter = $('#departmentFilter');
+            
+            // Parse URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const departmentParam = urlParams.get('department');
+            
+            // Fetch department data
+            $.getJSON('departments.json', function(departmentData) {
+                // Populate department filter
+                departmentData.departments.forEach(department => {
+                    departmentFilter.append(`<option value="${department.id}">${department.name}</option>`);
+                });
+                
+                // Pre-select department from URL if present
+                if (departmentParam) {
+                    departmentFilter.val(departmentParam);
+                }
+                
+                // Fetch portfolio data
+                $.getJSON('portfolios.json', function(data) {
+                    // Display portfolios function
+                    function displayPortfolios(students) {
+                        portfolioGrid.empty();
+                        
+                        if (students.length === 0) {
+                            portfolioGrid.html('<div class="col-12 text-center"><p>No students found matching your criteria.</p></div>');
+                            return;
+                        }
+                        
+                        // Department background images
+                        const departmentBackgrounds = {
+                            'Computer Science': 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format',
+                            'Mechanical Engineering': 'https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=600&auto=format',
+                            'Food Technology': 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&auto=format',
+                            'Automobile Engineering': 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&auto=format',
+                            'Computer Applications': 'https://images.unsplash.com/photo-1550439062-609e1531270e?w=600&auto=format',
+                            'Cyber Security': 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=600&auto=format'
+                        };
+                        
+                        students.forEach(student => {
+                            // Get department background or use a default
+                            const departmentBg = departmentBackgrounds[student.department] || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format';
+                            
+                            const card = `
+                            <div class="col-lg-4 col-md-6">
+                                <div class="portfolio-card">
+                                    <div class="profile-header" style="background-image: url('${departmentBg}');">
+                                        <img src="${student.profile_image}" alt="${student.name}" class="profile-image">
+                                    </div>
+                                    <div class="student-info">
+                                        <h2 class="student-name">${student.name}</h2>
+                                        <div class="student-department">${student.department}</div>
+                                        
+                                        <h3 class="section-title">Education</h3>
+                                        <p>${student.education.degree}<br>
+                                        GPA: ${student.education.gpa}<br>
+                                        ${student.education.institution}, ${student.education.year}</p>
+                                        
+                                        <h3 class="section-title">Skills</h3>
+                                        <div class="skills-list">
+                                            ${student.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                                        </div>
+                                        
+                                        <h3 class="section-title">Interests</h3>
+                                        <div class="interests-list">
+                                            ${student.interests.map(interest => `<span class="interest-tag">${interest}</span>`).join('')}
+                                        </div>
+                                        
+                                        <h3 class="section-title">Projects</h3>
+                                        <div class="projects-section">
+                                            ${student.projects.map(project => `
+                                                <div class="project-card">
+                                                    <h4 class="project-title">${project.title}</h4>
+                                                    <p class="project-description">${project.description}</p>
+                                                    <div class="project-technologies">
+                                                        ${project.technologies.map(tech => `<span class="technology-tag">${tech}</span>`).join('')}
+                                                    </div>
+                                                    <a href="${project.github}" target="_blank" class="btn btn-sm btn-outline-dark">
+                                                        <i class="fab fa-github"></i> View on GitHub
+                                                    </a>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                        
+                                        <h3 class="section-title">Achievements</h3>
+                                        <ul class="achievement-list">
+                                            ${student.achievements.map(achievement => `
+                                                <li class="achievement-item">
+                                                    <i class="fas fa-trophy"></i>
+                                                    ${achievement}
+                                                </li>
+                                            `).join('')}
+                                        </ul>
+                                        
+                                        <div class="contact-section">
+                                            <a href="${student.projects[0].github}" target="_blank" class="contact-btn github-btn">
+                                                <i class="fab fa-github"></i> GitHub
+                                            </a>
+                                            <a href="mailto:${student.id}@educonnect.edu" class="contact-btn email-btn">
+                                                <i class="fas fa-envelope"></i> Contact
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        portfolioGrid.append(card);
+                        });
+                    }
+                    
+                    function filterPortfolios() {
+                        const searchTerm = searchInput.val().toLowerCase();
+                        const selectedDepartment = departmentFilter.val();
+                        
+                        let filteredData = [];
+                        
+                        // If a department is selected, only show students from that department
+                        if (selectedDepartment) {
+                            // Get students directly using the department ID as the key
+                            if (data.portfolios[selectedDepartment]) {
+                                filteredData = data.portfolios[selectedDepartment];
+                            }
+                        } else {
+                            // If no department is selected, show all students
+                            Object.values(data.portfolios).forEach(departmentStudents => {
+                                filteredData = filteredData.concat(departmentStudents);
+                            });
+                        }
+                        
+                        // Apply search filter if there's a search term
+                        if (searchTerm) {
+                            filteredData = filteredData.filter(student =>
+                                student.name.toLowerCase().includes(searchTerm) ||
+                                student.skills.some(skill => skill.toLowerCase().includes(searchTerm)) ||
+                                student.projects.some(project => 
+                                    project.title.toLowerCase().includes(searchTerm) ||
+                                    project.description.toLowerCase().includes(searchTerm)
+                                )
+                            );
+                        }
+                        
+                        displayPortfolios(filteredData);
+                    }
+                    
+                    // Initial display with filtered data
+                    // Use timeout to ensure departmentFilter has been populated
+                    setTimeout(function() {
+                        filterPortfolios();
+                    }, 100);
+                    
+                    // Event listeners
+                    searchInput.on('input', filterPortfolios);
+                    departmentFilter.on('change', filterPortfolios);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
